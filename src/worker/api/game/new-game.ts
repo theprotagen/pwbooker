@@ -1,5 +1,6 @@
 import { createSavedGame } from '@/common';
 import { cache } from '@/worker/cache';
+import { importFromJson } from '@/worker/utils';
 
 import { loadGame } from './load-game';
 
@@ -8,7 +9,7 @@ export const newGame = async (name: string, data: string) => {
   cache.meta.savedGames.push(savedGame);
 
   await loadGame(savedGame.id);
+  await importFromJson(cache.gameDb, data);
 
-  // TODO: import from json
   await cache.flush();
 };

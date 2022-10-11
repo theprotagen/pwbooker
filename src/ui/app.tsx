@@ -1,3 +1,4 @@
+import { Group, Loader } from '@mantine/core';
 import { Suspense, useEffect, useState } from 'react';
 
 import { api } from './api';
@@ -16,10 +17,30 @@ export const App = () => {
       setSetupComplete(true);
       setLoading(false);
     });
+    // eslint-disable-next-line
   }, []);
 
   return (
-    <Suspense fallback={<></>}>
+    <Suspense
+      fallback={
+        <Group
+          style={{
+            alignItems: 'center',
+            backdropFilter: 'blur(5px)',
+            backgroundColor: 'rgba(0, 0, 0, 0.0)',
+            height: '100vh',
+            justifyContent: 'center',
+            left: 0,
+            position: 'absolute',
+            top: 0,
+            width: '100vw',
+            zIndex: 1000,
+          }}
+        >
+          <Loader />
+        </Group>
+      }
+    >
       {loading && <LoadingOverlay />}
       {setupComplete && <AppRoutes />}
     </Suspense>

@@ -15,6 +15,7 @@ export type Cache = {
   gameDb: IDBPDatabase<GameDb>;
   gameInfo: GameInfo;
   prevGameInfo: GameInfo;
+  inGame: boolean;
   people: StoreApi<Person>;
   fill(): Promise<void>;
   flush(): Promise<void>;
@@ -39,6 +40,8 @@ export const cache: Cache = {
   gameInfo: undefined,
   // @ts-ignore
   prevGameInfo: undefined,
+
+  inGame: false,
 
   people: createStoreApi('people'),
 

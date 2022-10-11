@@ -9,5 +9,7 @@ export const loadGame = async (id: string) => {
 
   await cache.fill();
 
+  cache.inGame = true;
+
   updateUi([QK_GAME]);
 };

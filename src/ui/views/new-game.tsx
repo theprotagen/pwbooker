@@ -35,7 +35,7 @@ export const NewGame = () => {
         setData(results);
       });
     } else {
-      setData(undefined);
+      setData(JSON.stringify(defaultMod));
     }
   }, [modFile]);
 

@@ -20,7 +20,9 @@ export const AppLayout = () => {
       }
       header={
         <Header height={70} p="md">
-          <AppHeader />
+          <div style={{ display: 'flex', height: '100%', alignItems: 'center' }}>
+            <AppHeader />
+          </div>
         </Header>
       }
     >
