@@ -12,7 +12,7 @@ export const loadGame = async (id: string) => {
   const savedGame = cache.meta.savedGames.find(game => game.id === id);
   if (savedGame) {
     savedGame.dateModified = new Date();
-    cache.meta.savedGames.filter(game => game.id !== id);
+    cache.meta.savedGames = cache.meta.savedGames.filter(game => game.id !== id);
     cache.meta.savedGames.push(savedGame);
   }
 

@@ -3,13 +3,22 @@ import { DatePicker } from '@mantine/dates';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { createPerson, genders, mapToSelectItem, nationalities, races, sexualities } from '@/common';
+import {
+  bodySizes,
+  bodyTypes,
+  createPerson,
+  genders,
+  mapToSelectItem,
+  nationalities,
+  races,
+  sexualities,
+} from '@/common';
 
 import { api } from '../api';
 import { View } from '../components';
 import { useLoadingStore } from '../stores';
 
-const MAX_POINTS = 25;
+const MAX_POINTS = 30;
 
 export const CreateUser = () => {
   const navigate = useNavigate();
@@ -21,7 +30,13 @@ export const CreateUser = () => {
 
   useEffect(() => {
     setPointsRemaining(
-      MAX_POINTS - user.creativity - user.diplomacy - user.motivating - user.negotiating - user.persuading,
+      MAX_POINTS -
+        user.creativity -
+        user.diplomacy -
+        user.leadership -
+        user.motivating -
+        user.negotiating -
+        user.persuading,
     );
   }, [user]);
 
@@ -50,24 +65,42 @@ export const CreateUser = () => {
         </Group>
         <Group>
           <Select
+            label="Gender"
             data={mapToSelectItem(genders)}
             value={user.gender.toString()}
             onChange={val => setUser({ ...user, gender: Number(val) })}
           />
           <Select
+            label="Sexuality"
             data={mapToSelectItem(sexualities)}
             value={user.sexuality.toString()}
             onChange={val => setUser({ ...user, sexuality: Number(val) })}
           />
           <Select
+            label="Race"
             data={mapToSelectItem(races)}
             value={user.race.toString()}
             onChange={val => setUser({ ...user, race: Number(val) })}
           />
           <Select
+            label="Nationality"
             data={mapToSelectItem(nationalities)}
             value={user.nationality.toString()}
             onChange={val => setUser({ ...user, nationality: Number(val) })}
+          />
+        </Group>
+        <Group>
+          <Select
+            label="Body Type"
+            data={mapToSelectItem(bodyTypes)}
+            value={user.bodyType.toString()}
+            onChange={val => setUser({ ...user, bodyType: Number(val) })}
+          />
+          <Select
+            label="Body Size"
+            data={mapToSelectItem(bodySizes)}
+            value={user.bodySize.toString()}
+            onChange={val => setUser({ ...user, bodySize: Number(val) })}
           />
         </Group>
         <Group>
@@ -94,6 +127,15 @@ export const CreateUser = () => {
             value={user.diplomacy}
             onChange={val => setUser({ ...user, diplomacy: val ?? 0 })}
           />
+          <NumberInput
+            label="Leadership"
+            min={0}
+            max={10}
+            step={1}
+            value={user.leadership}
+            onChange={val => setUser({ ...user, leadership: val ?? 0 })}
+          />
+
           <NumberInput
             label="Motivating"
             min={0}

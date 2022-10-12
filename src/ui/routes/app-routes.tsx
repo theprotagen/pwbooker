@@ -7,6 +7,7 @@ const { CreateUser } = lazyImport(() => import('@/ui/views/create-user'), 'Creat
 const { Dashboard } = lazyImport(() => import('@/ui/views/dashboard'), 'Dashboard');
 const { Landing } = lazyImport(() => import('@/ui/views/landing'), 'Landing');
 const { NewGame } = lazyImport(() => import('@/ui/views/new-game'), 'NewGame');
+const { SavedGames } = lazyImport(() => import('@/ui/views/saved-games'), 'SavedGames');
 
 export const AppRoutes = () => {
   return (
@@ -14,6 +15,7 @@ export const AppRoutes = () => {
       <Route path="/" element={<AppLayout />}>
         <Route index element={<Landing />} />
         <Route path="new-game" element={<NewGame />} />
+        <Route path="saved-games" element={<SavedGames />} />
       </Route>
       <Route path="/game" element={<GameLayout />}>
         <Route index element={<Dashboard />} />

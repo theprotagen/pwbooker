@@ -10,11 +10,15 @@ export const Landing = () => {
     navigate('/new-game');
   };
 
+  const onSavedGamesClicked = () => {
+    navigate('/saved-games');
+  };
+
   return (
     <View>
       <Group>
         <Button onClick={() => onNewGameClicked()}>New Game</Button>
-        <Button>Saved Games</Button>
+        <Button onClick={() => onSavedGamesClicked()}>Saved Games</Button>
       </Group>
     </View>
   );
