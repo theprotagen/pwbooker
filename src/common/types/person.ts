@@ -11,4 +11,9 @@ export type Person = {
   sexuality: Sexuality;
   race: Race;
   nationality: Nationality;
+  creativity: number;
+  diplomacy: number;
+  motivating: number;
+  negotiating: number;
+  persuading: number;
 };

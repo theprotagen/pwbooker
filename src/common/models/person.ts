@@ -12,5 +12,10 @@ export const createPerson = (partial?: Partial<Person>): Person => ({
   sexuality: Sexuality.Heterosexual,
   race: Race.White,
   nationality: Nationality.American,
+  creativity: 0,
+  diplomacy: 0,
+  motivating: 0,
+  negotiating: 0,
+  persuading: 0,
   ...partial,
 });

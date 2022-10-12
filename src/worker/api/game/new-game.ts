@@ -11,5 +11,7 @@ export const newGame = async (name: string, data: string) => {
   await loadGame(savedGame.id);
   await importFromJson(cache.gameDb, data);
 
+  cache.gameInfo.name = name;
+
   await cache.flush();
 };

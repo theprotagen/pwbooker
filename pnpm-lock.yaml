@@ -14,6 +14,7 @@ specifiers:
   '@mantine/modals': ^5.5.4
   '@mantine/notifications': ^5.5.4
   '@mantine/spotlight': ^5.5.4
+  '@tabler/icons': ^1.103.0
   '@tanstack/react-query': ^4.10.3
   '@testing-library/jest-dom': ^5.16.5
   '@testing-library/react': ^13.4.0
@@ -68,6 +69,7 @@ dependencies:
   '@mantine/modals': 5.5.4_peoatue7sckyfiogasz7flkvpm
   '@mantine/notifications': 5.5.4_peoatue7sckyfiogasz7flkvpm
   '@mantine/spotlight': 5.5.4_peoatue7sckyfiogasz7flkvpm
+  '@tabler/icons': 1.103.0_biqbaboplfbrettd7655fr4n2y
   '@tanstack/react-query': 4.10.3_biqbaboplfbrettd7655fr4n2y
   comlink: 4.3.1
   dayjs: 1.11.5
@@ -1456,6 +1458,21 @@ packages:
     dependencies:
       '@sinonjs/commons': 1.8.3
     dev: true
+
+  /@tabler/icons/1.103.0_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-oXUNf/Bn+88Xm+uWVht9MRRB/usDtjNrzKr7XhlB1P6V4vpWdG68OMffEONDbFqvEMC/eGYfhLI/PUHsR2XN4A==}
+    peerDependencies:
+      react: ^16.x || 17.x || 18.x
+      react-dom: ^16.x || 17.x || 18.x
+    peerDependenciesMeta:
+      react:
+        optional: true
+      react-dom:
+        optional: true
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
 
   /@tanstack/query-core/4.10.3:
     resolution: {integrity: sha512-+ME02sUmBfx3Pjd+0XtEthK8/4rVMD2jcxvnW9DSgFONpKtpjzfRzjY4ykzpDw1QEo2eoPvl7NS8J5mNI199aA==}

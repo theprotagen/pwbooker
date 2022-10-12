@@ -1,6 +1,6 @@
-import { Button, Group, Select, Stack, TextInput } from '@mantine/core';
+import { Alert, Button, Group, NumberInput, Select, Stack, TextInput } from '@mantine/core';
 import { DatePicker } from '@mantine/dates';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { createPerson, genders, mapToSelectItem, nationalities, races, sexualities } from '@/common';
@@ -9,12 +9,21 @@ import { api } from '../api';
 import { View } from '../components';
 import { useLoadingStore } from '../stores';
 
+const MAX_POINTS = 25;
+
 export const CreateUser = () => {
   const navigate = useNavigate();
 
   const { setLoading } = useLoadingStore();
 
   const [user, setUser] = useState(createPerson({ user: true }));
+  const [pointsRemaining, setPointsRemaining] = useState(MAX_POINTS);
+
+  useEffect(() => {
+    setPointsRemaining(
+      MAX_POINTS - user.creativity - user.diplomacy - user.motivating - user.negotiating - user.persuading,
+    );
+  }, [user]);
 
   const onCreateClicked = async () => {
     setLoading(true, 'Creating user...');
@@ -68,7 +77,59 @@ export const CreateUser = () => {
             onChange={val => setUser({ ...user, birthday: val ?? new Date() })}
           />
         </Group>
-        <Button onClick={async () => await onCreateClicked()}>Create User</Button>
+        <Group>
+          <NumberInput
+            label="Creativity"
+            min={0}
+            max={10}
+            step={1}
+            value={user.creativity}
+            onChange={val => setUser({ ...user, creativity: val ?? 0 })}
+          />
+          <NumberInput
+            label="Displomacy"
+            min={0}
+            max={10}
+            step={1}
+            value={user.diplomacy}
+            onChange={val => setUser({ ...user, diplomacy: val ?? 0 })}
+          />
+          <NumberInput
+            label="Motivating"
+            min={0}
+            max={10}
+            step={1}
+            value={user.motivating}
+            onChange={val => setUser({ ...user, motivating: val ?? 0 })}
+          />
+          <NumberInput
+            label="Negotiating"
+            min={0}
+            max={10}
+            step={1}
+            value={user.negotiating}
+            onChange={val => setUser({ ...user, negotiating: val ?? 0 })}
+          />
+          <NumberInput
+            label="Persuading"
+            min={0}
+            max={10}
+            step={1}
+            value={user.persuading}
+            onChange={val => setUser({ ...user, persuading: val ?? 0 })}
+          />
+        </Group>
+        {pointsRemaining < 0 && (
+          <Group>
+            <Alert color="red">
+              You have used too many points. Please decrease your skills by {Math.abs(pointsRemaining)} point
+              {Math.abs(pointsRemaining) > 1 && <span>s</span>}.
+            </Alert>
+          </Group>
+        )}
+        <Button disabled={pointsRemaining < 0} onClick={async () => await onCreateClicked()}>
+          Create User
+        </Button>
       </Stack>
     </View>
   );
