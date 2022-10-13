@@ -1,6 +1,6 @@
 import type { IDBPDatabase } from 'idb';
 
-import { type GameInfo, type Meta, type Person, createGameInfo, EMPTY_SAVED_GAME_ID } from '@/common';
+import { type Company, type GameInfo, type Meta, type Person, createGameInfo, EMPTY_SAVED_GAME_ID } from '@/common';
 
 import type { GameDb, MetaDb } from '../db';
 import { type StoreApi, createStoreApi, storeNames } from './store-api';
@@ -16,6 +16,7 @@ export type Cache = {
   gameInfo: GameInfo;
   prevGameInfo: GameInfo;
   inGame: boolean;
+  companies: StoreApi<Company>;
   people: StoreApi<Person>;
   fill(): Promise<void>;
   flush(): Promise<void>;
@@ -43,6 +44,7 @@ export const cache: Cache = {
 
   inGame: false,
 
+  companies: createStoreApi('companies'),
   people: createStoreApi('people'),
 
   async fill() {

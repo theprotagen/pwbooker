@@ -9,6 +9,7 @@ const worker = new SharedWorker();
 
 worker.port.onmessage = (e: MessageEvent) => {
   if (Array.isArray(e.data)) {
+    console.log(e.data);
     queryClient.invalidateQueries(e.data);
   }
 };

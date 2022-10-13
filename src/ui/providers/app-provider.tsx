@@ -4,6 +4,7 @@ import { ModalsProvider } from '@mantine/modals';
 import { NotificationsProvider } from '@mantine/notifications';
 import { SpotlightProvider } from '@mantine/spotlight';
 import { QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import type { FC, PropsWithChildren } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 
@@ -28,7 +29,10 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
           <NotificationsProvider>
             <SpotlightProvider actions={[]}>
               <HelmetProvider>
-                <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+                <QueryClientProvider client={queryClient}>
+                  <ReactQueryDevtools initialIsOpen={false} />
+                  {children}
+                </QueryClientProvider>
               </HelmetProvider>
             </SpotlightProvider>
           </NotificationsProvider>

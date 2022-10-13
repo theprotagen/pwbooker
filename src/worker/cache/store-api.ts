@@ -1,11 +1,11 @@
-import type { Person } from '@/common';
+import type { Company, Person } from '@/common';
 
 import { cache } from './cache';
 
-export type Store = Person;
-export type StoreName = 'people';
+export type Store = Company | Person;
+export type StoreName = 'companies' | 'people';
 
-export const storeNames: StoreName[] = ['people'];
+export const storeNames: StoreName[] = ['companies', 'people'];
 
 export type StoreApi<T extends Store> = {
   storeName: StoreName;

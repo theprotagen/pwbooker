@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import { AppLayout, GameLayout } from '../components';
 import { lazyImport } from '../utils';
 
+const { BecomeABooker } = lazyImport(() => import('@/ui/views/become-a-booker'), 'BecomeABooker');
 const { CreateUser } = lazyImport(() => import('@/ui/views/create-user'), 'CreateUser');
 const { Dashboard } = lazyImport(() => import('@/ui/views/dashboard'), 'Dashboard');
 const { Landing } = lazyImport(() => import('@/ui/views/landing'), 'Landing');
@@ -19,6 +20,7 @@ export const AppRoutes = () => {
       </Route>
       <Route path="/game" element={<GameLayout />}>
         <Route index element={<Dashboard />} />
+        <Route path="become-a-booker" element={<BecomeABooker />} />
         <Route path="create-user" element={<CreateUser />} />
       </Route>
     </Routes>
